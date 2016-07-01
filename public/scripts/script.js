@@ -1,26 +1,28 @@
-var myApp = angular.module("myApp", ["ngRoute"]);
+var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.config(["$routeProvider", function($routeProvider){
+// config our routes
+myApp.config(['$routeProvider', function($routeProvider){
   $routeProvider.
-    when("/entry", {
-      templateUrl: "../routes/hero-entry.html",
-      controller: "EntryController"
+    when('/entry', {
+      templateUrl: '../routes/hero-entry.html',
+      controller: 'EntryController'
     }).
-    when("/list", {
-      templateUrl: "../routes/hero-list.html",
-      controller: "ListController"
+    when('/list', {
+      templateUrl: '../routes/hero-list.html',
+      controller: 'ListController'
     }).
     otherwise({
-      redirectTo: "/entry"
+      redirectTo: '/entry'
     });
 }]); // end config routes
 
-myApp.controller("EntryController", ["$scope", "$http", function($scope, $http){
-  console.log("Loaded EntryController");
+// controller to enter new heroes
+myApp.controller('EntryController', ['$scope', '$http', function($scope, $http){
+  console.log('Loaded EntryController');
   // ng-click function to add hero
   $scope.getInput = function(){
     event.preventDefault();
-    console.log("getInput button clicked");
+    console.log('getInput button clicked');
     // get the user input and store in object
     var heroToSend = {
       alias: $scope.aliasIn,
@@ -31,7 +33,7 @@ myApp.controller("EntryController", ["$scope", "$http", function($scope, $http){
     }; // end heroToSend
     // post route to create data
     $http({
-      method: "POST",
+      method: 'POST',
       url: '/addHero',
       data: heroToSend
     }); // end post route
@@ -44,6 +46,7 @@ myApp.controller("EntryController", ["$scope", "$http", function($scope, $http){
   }; // end getInput
 }]); // end EntryController
 
+// controller to view list of heroes
 myApp.controller('ListController', ['$scope', '$http', function($scope, $http){
   $scope.heroRecords = [];
   //retrieve hero records
@@ -77,7 +80,7 @@ myApp.controller('ListController', ['$scope', '$http', function($scope, $http){
 }]); // end ListController
 
 
-// directive to alert user of successful addition of new animal
+// directive to alert user of successful addition of new hero
 myApp.directive('ngConfirmClick', [function(){
   return{
     link: function (scope, element, attr){
