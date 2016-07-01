@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Hero Tracker</title>
+    <script type="text/javascript" src="vendors/angular.js"></script>
+    <script type="text/javascript" src="vendors/angular-route.min.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
+    <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Super Hero Tracker Database</h1>
+      <div ng-include="'/partials/nav.html'"></div>
+      <main ng-view></main>
+    </div>
+  </body>
+</html>
